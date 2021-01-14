@@ -11,12 +11,24 @@ import Kingfisher
 class HomeViewController: UIViewController, HomeViewModelDelegate {
     
     @IBOutlet weak var homeCollectionView: UICollectionView!
+    @IBOutlet weak var activityView: UIView!
     
     var categories:[Category]?
     var brands:[Brand]?
     
     var customLayout: CustomLayout? {
       return homeCollectionView?.collectionViewLayout as? CustomLayout
+    }
+    
+    var isLoading: Bool? {
+        didSet{
+            if isLoading ?? false{
+                self.activityView.isHidden = false
+            }
+            else {
+                self.activityView.isHidden = true
+            }
+        }
     }
     
     override func viewWillLayoutSubviews() {
@@ -32,9 +44,13 @@ class HomeViewController: UIViewController, HomeViewModelDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.activityView.isHidden = false
+        
         setupCollectionViewLayout()
         
         HomeViewModel.shared.delegate = self
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -143,14 +159,14 @@ private extension HomeViewController {
 }
 
 extension HomeViewController : CategoryViewDelegate {
-    func didSelect(category: Category) {
-        let headerView = homeCollectionView.supplementaryView(forElementKind: CustomLayout.Element.header.kind, at: IndexPath(item: 0, section: 0)) as! HeaderView
+    func didSelect(category: Category?) {
+        let headerView = homeCollectionView.supplementaryView(forElementKind: CustomLayout.Element.header.kind, at: IndexPath(item: 0, section: 0)) as? HeaderView
         
-        headerView.headerCategoryImageView.kf.setImage(with: URL(string: category.imageLarge ?? ""), placeholder: UIImage())
-        headerView.titleLabel.text = category.title
-        headerView.captionLabel.text = category.caption
-        if HomeViewModel.shared.getSelectedCategory()?.id != category.id {
-            HomeViewModel.shared.getHomePageData(category: category.id ?? 0, pageNo: 1)
+        headerView?.headerCategoryImageView.kf.setImage(with: URL(string: category?.imageLarge ?? ""), placeholder: UIImage())
+        headerView?.titleLabel.text = category?.title
+        headerView?.captionLabel.text = category?.caption
+        if HomeViewModel.shared.getSelectedCategory()?.id != category?.id {
+            HomeViewModel.shared.getHomePageData(category: category?.id ?? 0, pageNo: 1)
         }
     }
     

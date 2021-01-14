@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol CategoryViewDelegate : class {
-    func didSelect(category : Category)
+    func didSelect(category : Category?)
     func reloadCollectionViewDataWithCategoryIndex(_ index: Int)
 }
 
@@ -72,6 +72,7 @@ extension CategoryView : UICollectionViewDelegate, UICollectionViewDataSource, U
         if indexPath.item == selectedIndex {
             cell.isSelected = true
             categoryNameLabel.text = categories?[indexPath.item].name
+            self.delegate?.didSelect(category: categories?[indexPath.item])
         }
         else {
             cell.isSelected = false
@@ -90,8 +91,8 @@ extension CategoryView : UICollectionViewDelegate, UICollectionViewDataSource, U
         collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         selectedIndex = indexPath.item
         categoryNameLabel.text = categories?[indexPath.item].name
-        collectionView.reloadData()
-        self.delegate?.didSelect(category: categories![indexPath.item])
+            collectionView.reloadData()
+        
     }
   
 }

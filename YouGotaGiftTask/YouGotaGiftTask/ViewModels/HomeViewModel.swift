@@ -10,6 +10,8 @@ import Foundation
 protocol HomeViewModelDelegate : class {
     func loadHomaPageData(categories:Array<Category>, brands:Array<Brand>)
     func loadBrands(brands:Array<Brand>)
+    
+    var isLoading:Bool? { get set }
 }
 
 extension HomeViewModelDelegate {
@@ -29,6 +31,7 @@ class HomeViewModel {
     public static let shared = HomeViewModel()
     
     open func getHomePageData(category:Int, pageNo:Int) {
+        self.delegate?.isLoading = true
         APIHandler.getHomeData(category: category, pageNo: pageNo) { (result) in
             print("Home Page Result ..... \(result)")
             
@@ -37,6 +40,7 @@ class HomeViewModel {
                 self.categories = response.categories
                 self.brands = response.brands
                 self.selectedCategory = response.selectedCategory
+                self.delegate?.isLoading = false
                 self.delegate?.loadHomaPageData(categories: response.categories ?? [Category](), brands: response.brands ?? [Brand]())
             case .failure(let error):
                 print(error.localizedDescription)
