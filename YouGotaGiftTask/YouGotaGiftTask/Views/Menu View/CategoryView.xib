@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="menu" id="U6b-Vx-4bR" customClass="CategoryView" customModule="YouGotaGiftTask" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="504" height="151"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="37Z-2b-MOP">
+                    <rect key="frame" x="0.0" y="0.0" width="504" height="110"/>
+                    <color key="backgroundColor" systemColor="systemGray5Color"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pfX-eh-TA4">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="U6b-Vx-4bR" id="dhv-5J-hq1"/>
+                        <outlet property="delegate" destination="U6b-Vx-4bR" id="N5y-7o-eWT"/>
+                    </connections>
+                </collectionView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDE-PK-Ay2">
+                    <rect key="frame" x="20" y="118" width="464" height="33"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="33" id="uQh-ZU-IAr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="RDE-PK-Ay2" secondAttribute="trailing" constant="20" id="04r-ed-HA2"/>
+                <constraint firstAttribute="trailing" secondItem="37Z-2b-MOP" secondAttribute="trailing" id="NJf-M5-NA1"/>
+                <constraint firstItem="37Z-2b-MOP" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="NdW-BF-MXj"/>
+                <constraint firstItem="RDE-PK-Ay2" firstAttribute="top" secondItem="37Z-2b-MOP" secondAttribute="bottom" constant="8" id="QHh-tD-GWp"/>
+                <constraint firstAttribute="bottom" secondItem="RDE-PK-Ay2" secondAttribute="bottom" id="hdp-co-sUI"/>
+                <constraint firstItem="RDE-PK-Ay2" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="20" id="leZ-qZ-mLk"/>
+                <constraint firstItem="37Z-2b-MOP" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="oih-go-jbE"/>
+            </constraints>
+            <connections>
+                <outlet property="categoryCollectionView" destination="37Z-2b-MOP" id="WVM-s5-dGV"/>
+                <outlet property="categoryNameLabel" destination="RDE-PK-Ay2" id="wdW-5q-0qw"/>
+            </connections>
+            <point key="canvasLocation" x="126.40000000000001" y="103.89805097451276"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
